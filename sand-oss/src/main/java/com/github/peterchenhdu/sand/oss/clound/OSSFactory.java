@@ -1,0 +1,55 @@
+/*
+ * Copyright (c) 2020-2020 peterchenhdu (928651551@qq.com).
+ *
+ *      https://github.com/peterchenhdu
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.github.peterchenhdu.sand.oss.clound;
+
+
+import com.github.peterchenhdu.sand.base.util.SpringContextUtils;
+import com.github.peterchenhdu.sand.oss.constant.CloudServiceEnum;
+import com.github.peterchenhdu.sand.oss.dto.CloudStorageConfigDto;
+import com.github.peterchenhdu.sand.oss.service.ICloudStorageConfigService;
+
+/**
+ * 文件上传Factory
+ *
+ * @author chenpi
+ * @since 1.0.0 2020/4/28 22:14
+ **/
+public final class OSSFactory {
+    private static ICloudStorageConfigService sysConfigService;
+
+    static {
+        OSSFactory.sysConfigService = (ICloudStorageConfigService) SpringContextUtils.getBean("cloudStorageConfigService");
+    }
+
+    public static CloudStorageService build() {
+        //获取云存储配置信息
+        CloudStorageConfigDto config = sysConfigService.getCloudStorageConfig();
+
+        if (config.getType() == CloudServiceEnum.QINIU.getValue()) {
+            return new QiniuCloudStorageService(config);
+        } else if (config.getType() == CloudServiceEnum.ALIYUN.getValue()) {
+            return new AliyunCloudStorageService(config);
+        } else if (config.getType() == CloudServiceEnum.QCLOUD.getValue()) {
+            return new QcloudCloudStorageService(config);
+        }
+
+        return null;
+    }
+
+}

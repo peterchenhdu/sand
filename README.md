@@ -1,5 +1,20 @@
 # sand
-sand framework.
+Sand Framework, focus on code reuse, enhance develop-efficiency.
+- [x] sand-base
+- [x] sand-biz-log
+- [ ] sand-csv
+- [x] sand-datasource
+- [ ] sand-ehcache
+- [ ] sand-exception
+- [x] sand-kaptcha
+- [x] sand-oss
+- [ ] sand-poi
+- [x] sand-quartz
+- [x] sand-redis
+- [x] sand-shiro
+- [ ] sand-sys-log
+- [x] sand-validator
+- [ ] sand-websocket
 ## sand-base
 基础模块：包含公共基类，常用工具类等
 ## sand-biz-log

@@ -23,7 +23,7 @@ Spring Boot	  | 2.2.4.RELEASE | 简化Spring应用的搭建和开发过程
 Spring Framework	  | 5.2.3.RELEASE | Spring
 Oracle JDK	  | 1.8 | JDK
 MyBatis-Plus	  | 3.3.1 | MyBatis-Plus
-Apache Shiro	  | 1.4.0 | Apache Shiro
+Apache Shiro	  | 1.5.2 | Apache Shiro
 Kaptcha	  | 0.0.9 | Kaptcha
 Druid	  | 1.1.13 | Druid
 ## 模块介绍

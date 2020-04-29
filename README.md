@@ -1,5 +1,6 @@
 # sand
 [![Build Status](https://travis-ci.org/peterchenhdu/sand.svg?branch=master)](https://travis-ci.org/peterchenhdu/sand)
+<font face="STCAIYUN" color=green size=36>Sand Framework</font>
 Sand Framework, focus on code reuse, enhance develop-efficiency.
 ## 模块组成
 - [x] sand-base

@@ -1,8 +1,6 @@
 # sand
+[![Build Status](https://travis-ci.org/peterchenhdu/sand.svg?branch=master)](https://travis-ci.org/peterchenhdu/sand)
 Sand Framework, focus on code reuse, enhance develop-efficiency.
-[![Build Status][travis-image]][travis-url]
-[travis-image]: https://travis-ci.org/peterchenhdu/sand.svg?branch=master
-[travis-url]: https://travis-ci.org/peterchenhdu/sand
 ## 模块组成
 - [x] sand-base
 - [x] sand-biz-log

@@ -1,0 +1,9 @@
+language: java
+
+jdk:
+  - openjdk8
+
+notifications:
+  email:
+  - 928651551@qq.com
+

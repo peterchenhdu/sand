@@ -16,32 +16,18 @@
  * limitations under the License.
  */
 
-package com.github.peterchenhdu.sand.shiro.service;
+package com.github.peterchenhdu.sand.app.annotation;
 
-
-import com.github.peterchenhdu.sand.base.dto.BaseUser;
-import com.github.peterchenhdu.sand.shiro.dto.TokenEntity;
-
-import java.util.Set;
+import java.lang.annotation.*;
 
 /**
- * shiro相关接口
+ * app登录效验
  *
  * @author chenpi
  * @since 1.0.0 2020/4/28 22:14
  **/
-public interface ShiroService {
-    /**
-     * 获取用户权限列表
-     */
-    Set<String> getUserPermissions(long userId);
-
-    TokenEntity queryByToken(String token);
-
-    /**
-     * 根据用户ID，查询用户
-     *
-     * @param userId
-     */
-    BaseUser queryUser(Long userId);
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface Login {
 }

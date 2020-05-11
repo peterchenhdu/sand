@@ -19,7 +19,7 @@
 package com.github.peterchenhdu.sand.shiro.utils;
 
 import com.github.peterchenhdu.sand.base.exception.BaseException;
-import com.github.peterchenhdu.sand.shiro.dto.ShiroPrincipal;
+import com.github.peterchenhdu.sand.base.dto.BaseUser;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -40,8 +40,8 @@ public class ShiroUtils {
         return SecurityUtils.getSubject();
     }
 
-    public static ShiroPrincipal getUserEntity() {
-        return (ShiroPrincipal) SecurityUtils.getSubject().getPrincipal();
+    public static BaseUser getUserEntity() {
+        return (BaseUser) SecurityUtils.getSubject().getPrincipal();
     }
 
     public static Long getUserId() {

@@ -18,7 +18,7 @@
 
 package com.github.peterchenhdu.sand.shiro;
 
-import com.github.peterchenhdu.sand.shiro.dto.ShiroPrincipal;
+import com.github.peterchenhdu.sand.base.dto.BaseUser;
 import com.github.peterchenhdu.sand.shiro.dto.TokenEntity;
 import com.github.peterchenhdu.sand.shiro.service.ShiroService;
 import org.apache.shiro.authc.*;
@@ -53,7 +53,7 @@ public class OAuth2Realm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        ShiroPrincipal user = (ShiroPrincipal) principals.getPrimaryPrincipal();
+        BaseUser user = (BaseUser) principals.getPrimaryPrincipal();
         Long userId = user.getUserId();
 
         //用户权限列表
@@ -79,7 +79,7 @@ public class OAuth2Realm extends AuthorizingRealm {
         }
 
         //查询用户信息
-        ShiroPrincipal user = shiroService.queryUser(tokenEntity.getUserId());
+        BaseUser user = shiroService.queryUser(tokenEntity.getUserId());
         //账号锁定
         if (user.getStatus() == 0) {
             throw new LockedAccountException("账号已被锁定,请联系管理员");

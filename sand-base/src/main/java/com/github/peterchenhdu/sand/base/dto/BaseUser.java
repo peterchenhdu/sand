@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package com.github.peterchenhdu.sand.shiro.dto;
+package com.github.peterchenhdu.sand.base.dto;
 
 import java.util.Date;
 import java.util.List;
@@ -25,7 +25,7 @@ import java.util.List;
  * @author chenpi
  * @since 1.0.0 2020/4/24 22:03
  **/
-public class ShiroPrincipal {
+public class BaseUser {
     /**
      * 用户ID
      */

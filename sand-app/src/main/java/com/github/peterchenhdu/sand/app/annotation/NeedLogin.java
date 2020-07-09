@@ -16,20 +16,18 @@
  * limitations under the License.
  */
 
-package com.github.peterchenhdu.sand.app.service;
+package com.github.peterchenhdu.sand.app.annotation;
 
-
-import com.github.peterchenhdu.sand.base.dto.BaseUser;
-
+import java.lang.annotation.*;
 
 /**
- * 用户
+ * app登录效验
  *
  * @author chenpi
  * @since 1.0.0 2020/4/28 22:14
  **/
-public interface AppUserService {
-
-	BaseUser queryById(Long id);
-
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface NeedLogin {
 }

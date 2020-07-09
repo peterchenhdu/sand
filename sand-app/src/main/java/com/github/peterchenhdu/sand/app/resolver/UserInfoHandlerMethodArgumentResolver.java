@@ -18,9 +18,9 @@
 
 package com.github.peterchenhdu.sand.app.resolver;
 
-import com.github.peterchenhdu.sand.app.annotation.LoginUser;
-import com.github.peterchenhdu.sand.app.interceptor.AuthorizationInterceptor;
-import com.github.peterchenhdu.sand.app.service.AppUserService;
+import com.github.peterchenhdu.sand.app.annotation.UserInfo;
+import com.github.peterchenhdu.sand.app.interceptor.AppAuthInterceptor;
+import com.github.peterchenhdu.sand.app.service.SandAppUserService;
 import com.github.peterchenhdu.sand.base.dto.BaseUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
@@ -38,27 +38,25 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * @since 1.0.0 2020/4/28 22:14
  **/
 @Component
-public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
+public class UserInfoHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
     @Autowired
-    private AppUserService userService;
+    private SandAppUserService userService;
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.getParameterType().isAssignableFrom(BaseUser.class) && parameter.hasParameterAnnotation(LoginUser.class);
+        return parameter.getParameterType().isAssignableFrom(BaseUser.class) && parameter.hasParameterAnnotation(UserInfo.class);
     }
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer container,
                                   NativeWebRequest request, WebDataBinderFactory factory) throws Exception {
         //获取用户ID
-        Object object = request.getAttribute(AuthorizationInterceptor.USER_KEY, RequestAttributes.SCOPE_REQUEST);
+        Object object = request.getAttribute(AppAuthInterceptor.USER_KEY, RequestAttributes.SCOPE_REQUEST);
         if(object == null){
             return null;
         }
 
         //获取用户信息
-        BaseUser user = userService.queryById((Long)object);
-
-        return user;
+        return userService.queryById((Long)object);
     }
 }

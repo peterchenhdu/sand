@@ -18,16 +18,19 @@
 
 package com.github.peterchenhdu.sand.app.annotation;
 
-import java.lang.annotation.*;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * app登录效验
+ * 登录用户信息
  *
  * @author chenpi
  * @since 1.0.0 2020/4/28 22:14
  **/
-@Target(ElementType.METHOD)
+@Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
-@Documented
-public @interface Login {
+public @interface UserInfo {
+
 }

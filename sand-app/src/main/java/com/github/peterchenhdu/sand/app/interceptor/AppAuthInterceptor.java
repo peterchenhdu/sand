@@ -18,7 +18,7 @@
 
 package com.github.peterchenhdu.sand.app.interceptor;
 
-import com.github.peterchenhdu.sand.app.annotation.Login;
+import com.github.peterchenhdu.sand.app.annotation.NeedLogin;
 import com.github.peterchenhdu.sand.app.util.JwtUtils;
 import com.github.peterchenhdu.sand.base.exception.BaseException;
 import io.jsonwebtoken.Claims;
@@ -33,45 +33,42 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 权限(Token)验证
- *
+ * 权限(Token)验证拦截器
  *
  * @author chenpi
  * @since 1.0.0 2020/4/28 22:14
  **/
 @Component
-public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
+public class AppAuthInterceptor extends HandlerInterceptorAdapter {
     @Autowired
     private JwtUtils jwtUtils;
 
     public static final String USER_KEY = "userId";
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        Login annotation;
-        if(handler instanceof HandlerMethod) {
-            annotation = ((HandlerMethod) handler).getMethodAnnotation(Login.class);
-        }else{
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        if(!(handler instanceof HandlerMethod)) {
             return true;
         }
 
-        if(annotation == null){
+        NeedLogin annotation = ((HandlerMethod) handler).getMethodAnnotation(NeedLogin.class);
+        if (annotation == null) {
             return true;
         }
 
         //获取用户凭证
         String token = request.getHeader(jwtUtils.getHeader());
-        if(StringUtils.isBlank(token)){
+        if (StringUtils.isBlank(token)) {
             token = request.getParameter(jwtUtils.getHeader());
         }
 
         //凭证为空
-        if(StringUtils.isBlank(token)){
+        if (StringUtils.isBlank(token)) {
             throw new BaseException(jwtUtils.getHeader() + "不能为空", HttpStatus.UNAUTHORIZED.value());
         }
 
         Claims claims = jwtUtils.getClaimByToken(token);
-        if(claims == null || jwtUtils.isTokenExpired(claims.getExpiration())){
+        if (claims == null || jwtUtils.isTokenExpired(claims.getExpiration())) {
             throw new BaseException(jwtUtils.getHeader() + "失效，请重新登录", HttpStatus.UNAUTHORIZED.value());
         }
 

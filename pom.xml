@@ -32,7 +32,7 @@
         <mysql.version>8.0.17</mysql.version>
         <mssql.version>4.0</mssql.version>
         <oracle.version>11.2.0.3</oracle.version>
-        <pg.version>42.2.9</pg.version>
+        <pg.version>42.3.3</pg.version>
         <druid.version>1.1.21</druid.version>
         <jwt.version>0.7.0</jwt.version>
     </properties>
